@@ -1,0 +1,32 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Food Name</th>
+        <th scope="col">Food Review</th>
+        <th scope="col">Review Date</th>
+      </tr>
+    </thead>
+    <tbody>
+    <%
+    if (items) {
+      var cards = '';
+    items.forEach(item => {
+      var itemName = item['food_name'];
+      var itemReview = item['food_review'];
+      var reviewDate = item['review_date'];
+      var card = 
+      `
+      <tr>
+        <td >${itemName}</td>
+        <td>${itemReview}</td>
+        <td>${reviewDate}</td>
+      </tr>
+        `;
+        cards += card;
+    });
+      
+  %>
+      <%- cards %>
+  <% } %>
+    </tbody>
+  </table>

@@ -1,0 +1,67 @@
+
+<%
+  if (items) {
+	var cards = '<div class="row">';
+    var itemImage = items['strMealThumb'];
+    var itemVid = items['strYoutube'];
+    var itemSource = items['strSource'];
+    var card = 
+    `
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top" src="${itemImage}" alt="Card image cap">
+            <h5 class="card-title">
+              ${items['strMeal']}
+            </h5>
+            <div class="Instructions">
+              <b>Instructions</b>
+            </div>
+            ${items['strInstructions']}
+            <br>
+            <div class="Tags"><b>Tags: </b>
+              ${items['strTags']}
+            </div>
+            <button type="website" class="btn btn-primary" onclick="window.location='${itemSource}'">Source Website</button>
+            <button type="youtube" class="btn btn-primary" onclick="window.location='${itemVid}'">YouTube Video</button>
+            <button type="review" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Review</button>
+          </div>
+        </div>
+      </div>
+      
+<!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Review</h5>
+      </div>
+      <div class="modal-body">
+        <form class="" action="/get_feed/send_review" method="post">
+        <span class="label label-default">Food Name
+          <div class="form-group pmd-textfield">
+            <input type="text" readonly="" value="${items['strMeal']}" name="foodName" class="form-control">
+          </div>
+        </span>
+        <br>
+        <span class="label label-default">Enter your review here: 
+          <div class="form-group">
+            <label class="control-label"></label>
+            <textarea required class="form-control" name="review"></textarea>
+          </div>
+        </span>
+      </div>
+      <div class="modal-footer">
+        <input class="btn btn-light" type="submit" name="Submit" value = "Submit"/>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+      `;
+      cards += card;
+  cards += '</div>';   
+%>
+    <%- cards %>
+<% } %>
